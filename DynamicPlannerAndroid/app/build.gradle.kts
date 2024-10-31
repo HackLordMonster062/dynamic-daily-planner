@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -65,4 +66,6 @@ dependencies {
     testImplementation(libs.koin.test.junit4)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
+
+    implementation(libs.kotlinx.serialization.json)
 }

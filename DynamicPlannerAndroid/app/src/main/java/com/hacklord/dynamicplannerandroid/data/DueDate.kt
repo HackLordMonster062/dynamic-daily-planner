@@ -5,7 +5,9 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
 import kotlinx.datetime.todayIn
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class DueDate(
     val date: LocalDate
 ) {
