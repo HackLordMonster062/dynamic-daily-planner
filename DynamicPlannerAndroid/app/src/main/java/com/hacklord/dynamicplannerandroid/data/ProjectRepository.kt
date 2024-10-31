@@ -11,5 +11,7 @@ interface ProjectRepository {
 
     fun getAllProjects(): Flow<List<ProjectItem>>
 
+    suspend fun getDueItemById(id: Int): DueItem?
+
     suspend fun getProjectById(id: Int): ProjectItem?
 }

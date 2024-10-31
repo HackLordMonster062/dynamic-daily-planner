@@ -43,13 +43,31 @@ class ProjectRepositoryImpl(
     override fun getAllProjects(): Flow<List<ProjectItem>> {
         val projects = projectDao.getProjects()
             .map { projectEntities ->
-                projectEntities.map { project ->
-
+                projectEntities.map { entity ->
+                    getProjectById(entity.id!!)!!
                 }
             }
+
+        return projects
+    }
+
+    override suspend fun getDueItemById(id: Int): DueItem? {
+        val item = dueItemDao.getItemById(id)
+
+        item ?: return null
+
+        return Json.decodeFromString(item.item)
     }
 
     override suspend fun getProjectById(id: Int): ProjectItem? {
-        TODO("Not yet implemented")
+        val project = projectDao.getProjectById(id)
+
+        project ?: return null
+
+        return ProjectItem(
+            title = project.title,
+            timelines = project.items.map { getDueItemById(it!!) as DueItem.Timeline },
+            entityId = project.id
+        )
     }
 }
