@@ -3,6 +3,7 @@ package com.hacklord.dynamicplannerandroid.data
 import com.hacklord.dynamicplannerandroid.data.entity.DueItemEntity
 import com.hacklord.dynamicplannerandroid.data.entity.ProjectEntity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -40,7 +41,12 @@ class ProjectRepositoryImpl(
     }
 
     override fun getAllProjects(): Flow<List<ProjectItem>> {
-        TODO("Not yet implemented")
+        val projects = projectDao.getProjects()
+            .map { projectEntities ->
+                projectEntities.map { project ->
+
+                }
+            }
     }
 
     override suspend fun getProjectById(id: Int): ProjectItem? {
