@@ -1,4 +1,4 @@
-package com.hacklord.dynamicplannerandroid.data
+package com.hacklord.dynamicplannerandroid.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
