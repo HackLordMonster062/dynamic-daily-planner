@@ -2,7 +2,7 @@ package com.hacklord.dynamicplannerandroid.di
 
 import androidx.room.Room
 import com.hacklord.dynamicplannerandroid.data.ProjectRepositoryImpl
-import com.hacklord.dynamicplannerandroid.data.TaskDatabase
+import com.hacklord.dynamicplannerandroid.data.database.TaskDatabase
 import org.koin.dsl.module
 
 val appModule = module {

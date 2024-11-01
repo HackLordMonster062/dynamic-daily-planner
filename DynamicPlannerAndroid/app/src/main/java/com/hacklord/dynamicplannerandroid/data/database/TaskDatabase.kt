@@ -1,4 +1,4 @@
-package com.hacklord.dynamicplannerandroid.data
+package com.hacklord.dynamicplannerandroid.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

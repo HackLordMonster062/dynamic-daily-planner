@@ -1,4 +1,4 @@
-package com.hacklord.dynamicplannerandroid.data
+package com.hacklord.dynamicplannerandroid.data.database
 
 import androidx.room.Dao
 import androidx.room.Delete
