@@ -7,8 +7,8 @@ import com.hacklord.dynamicplannerandroid.data.ProjectItem
 import kotlin.random.Random
 
 class TaskPicker(
-    val projects: List<ProjectItem>,
-    val availableTime: Float
+    private val projects: List<ProjectItem>,
+    private val availableTime: Float
 ) {
     fun getTasks(): List<Task> {
         val tasks: MutableList<Task> = mutableListOf()
@@ -20,20 +20,23 @@ class TaskPicker(
         }
 
         tasks.sortBy { task ->
-            task.due?.daysRemaining() ?: Random.nextInt(1000, 2000)
+            val remainingDays = task.due?.daysRemaining() ?: AppConstants.DEFAULT_DUE_DURATION
+            if (remainingDays < AppConstants.URGENT_DUE) return@sortBy remainingDays
+            remainingDays + Random.nextInt(10, 20)
         }
 
         val filteredTasks: MutableList<Task> = mutableListOf()
         var timeAcc = 0f
 
         tasks.forEach { task ->
-            timeAcc += task.expectedHours
-
-            if (timeAcc <= availableTime) filteredTasks.add(task)
+            if (timeAcc + task.expectedHours <= availableTime) {
+                filteredTasks.add(task)
+                timeAcc += task.expectedHours
+            }
             else return@forEach
         }
 
-        return tasks
+        return filteredTasks
     }
 
     private fun getTaskForDueItem(dueItem: DueItem): Task {

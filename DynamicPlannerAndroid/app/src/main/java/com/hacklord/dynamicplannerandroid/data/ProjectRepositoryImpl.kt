@@ -10,8 +10,8 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class ProjectRepositoryImpl(
-    val projectDao: ProjectDao,
-    val dueItemDao: DueItemDao
+    private val projectDao: ProjectDao,
+    private val dueItemDao: DueItemDao
 ) : ProjectRepository {
     override suspend fun insertProject(project: ProjectItem) {
         project.timelines.forEach { timeline ->
